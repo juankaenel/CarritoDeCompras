@@ -11,7 +11,14 @@ function cargarEventListeners(){
     //Cuando agregas un curso presionando "Agregando al carrito"
     listaCursos.addEventListener('click',agregarCurso);
 
+    //Eliminar cursos del carrito
     carrito.addEventListener('click',eliminarCurso);
+
+    //Vaciar carrito 
+    vaciarCarritoBtn.addEventListener('click',()=>{
+        articulosCarrito = []; //reseteamos el arreglo
+        limpiarHTML(); //eliminamos todo el html
+    });
 
 }
 
@@ -116,3 +123,4 @@ function limpiarHTML(){
         contenedorCarrito.removeChild(contenedorCarrito.firstChild); //se va a eliminar el primer hijo del contenedor carrito
     }
 }
+
