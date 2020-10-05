@@ -11,9 +11,12 @@ function cargarEventListeners(){
     //Cuando agregas un curso presionando "Agregando al carrito"
     listaCursos.addEventListener('click',agregarCurso);
 
+    carrito.addEventListener('click',eliminarCurso);
+
 }
 
 //--------------------- Funciones ---------------------
+//Función para agregar curso
 function agregarCurso(e){
     e.preventDefault();
     //Event bubbling
@@ -21,6 +24,21 @@ function agregarCurso(e){
         const cursoSeleccionado = e.target.parentElement.parentElement; //accedo al div que lo contiene haciendo traversing, el padre del padre del elemento  
         leerDatosCurso(cursoSeleccionado);
     }
+}
+
+//Función para eliminar curso
+function eliminarCurso(e){
+    //console.log(e.target.classList);
+    
+    if(e.target.classList.contains('borrar-curso')){ //si dio click en borrar-curso -> x
+        const cursoId = e.target.getAttribute('data-id'); //obtengo el id del curso seleccionado
+
+        //Elimina del arreglo de articulosCarrito por el data-id
+        articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId); //hago un filtro que me va a crear un array nuevo, donde voy a traer todos los cursos menos el curso que es igual al data-id, es decir el que borré
+
+        carritoHTML(); //Itero sobre el carrito, y actualizo el html
+    }
+
 }
 
 //lee el contenido del Html al que le dimos click y extrae información del curso
